@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header  th:replace="~{fragments :: header}"> </header>
+
+    <div id="admin-bar">
+        <div class="nav">
+            <a class="navlink" href="/applications/add">Add Artwork</a>
+        </div>
+    </div>
+
+    <main>
+        <h2>Applications</h2>
+
+        <p th:unless="${applicationList} and ${applicationList.size()}">
+            <em>No job applications is available to display.</em>
+        </p>
+
+        <th:block th:if="${applicationList} and ${applicationList.size()}">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                </tr>
+                </thead>
+                <tr th:each="applications : ${applicationList}">
+                    <td th:text="${applications}"></td>
+                </tr>
+            </table>
+        </th:block>
+    </main>
+</body>
+</html>

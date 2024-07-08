@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header  th:replace="~{fragments :: header}" > </header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="/applications">View List of Applications</a>
+    </div>
+</div>
+<main>
+    <h3>Add Application</h3>
+    <form action='/applications/add' method='POST'>
+        <input type='text' name='application' />
+        <button type='submit'>Add to Applications</button>
+    </form>
+</main>
+</body>
+</html>

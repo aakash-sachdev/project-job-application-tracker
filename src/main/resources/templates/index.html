@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+    <header  th:replace="~{fragments :: header}" > </header>
+
+    <main>
+        <h1 th:text="${headingText}">Need Welcome Text</h1>
+        <p>This portal will allow you to help manage our <a href='/applications'>Job applications</a>.</p>
+    </main>
+    <img th:src="@{/images/application.jpg}" width="100%" />
+
+
+</body>
+</html>
