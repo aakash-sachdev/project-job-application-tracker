@@ -1,49 +1,58 @@
 package com.launchcode.job_application_tracker.controllers;
 
+import com.launchcode.job_application_tracker.data.JobApplicationData;
+import com.launchcode.job_application_tracker.models.JobApplications;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/applications")
 public class ApplicationController {
 
-    private static int nextId = 6;
-
-    private static final Map<Integer, String> applications = new HashMap<>() {{
-        put(1, "Microsoft CEO");
-        put(2, "Apple Hardware Design Head");
-        put(3, "Open A.I LLM architect");
-        put(4, "Google optimization engineer");
-        put(5, "Netflix content head");
-    }};
 
     @GetMapping("")
     public String renderApplicationsHomePage(Model model) {
-        List<String> applicationList = new ArrayList<>(applications.values());
-        model.addAttribute("applicationList", applicationList);
+        model.addAttribute("applicationList", JobApplicationData.getAll());
         return "applications/index";
     }
 
 
-
     @GetMapping("/add")
-    public String renderAddApplicationForm() {
+    public String renderAddApplicationForm(Model model) {
+        model.addAttribute("jobApplication",new JobApplications());
         return "applications/add";
     }
 
 
     @PostMapping("/add")
-    public String processAddApplicationForm(@RequestParam String application){
-        applications.put(nextId, application);
-        nextId++;
+    public String processAddApplicationForm(@ModelAttribute("jobApplication") @Valid JobApplications jobApplication, Errors errors){
+        if(errors.hasErrors()){
+            return "applications/add";
+        }else{
+        JobApplicationData.add(jobApplication);
+        return "redirect:/applications";
+        }
+    }
+
+    @GetMapping("/delete")
+    public String renderDeleteApplicationForm(Model model){
+        model.addAttribute("applicationList", JobApplicationData.getAll());
+        return "applications/delete";
+    }
+
+    @PostMapping("/delete")
+    public String processDeleteArtForm(@RequestParam(required = false) int[] applicationIds) {
+        if (applicationIds != null) {
+            for (int id : applicationIds) {
+                JobApplicationData.remove(id);
+            }
+        }
         return "redirect:/applications";
     }
+
 
 }
 

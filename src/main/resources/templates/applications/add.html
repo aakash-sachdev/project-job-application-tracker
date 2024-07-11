@@ -6,12 +6,28 @@
 <div id="admin-bar">
     <div class="nav">
         <a class="navlink" href="/applications">View List of Applications</a>
+        <a class="navlink" href="/applications/delete">Delete Application</a>
+
     </div>
 </div>
 <main>
     <h3>Add Application</h3>
     <form action='/applications/add' method='POST'>
-        <input type='text' name='application' />
+
+        <div class="form-item">
+            <label th:for="jobTitle"> Job Title</label>
+            <input th:field="${jobApplication.jobTitle}" />
+            <p class="error" th:errors="${jobApplication.jobTitle}"></p>
+        </div>
+        <div class="form-item">
+            <label th:for="company">Company</label>
+            <input th:field="${jobApplication.company}" />
+            <p class="error" th:errors="${jobApplication.company}"></p>
+        </div>
+
+
+<!--        <label>Job Tile <input type='text' name='jobTitle' /></label>-->
+<!--        <label>Company <input type='text' name='company' /></label>-->
         <button type='submit'>Add to Applications</button>
     </form>
 </main>

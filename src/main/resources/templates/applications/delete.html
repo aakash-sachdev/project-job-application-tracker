@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header  th:replace="~{fragments :: header}" > </header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="/applications">View List of Applications</a>
+        <a class="navlink" href="/applications/add">Add Application</a>
+    </div>
+</div>
+<main>
+    <h3>Delete Application</h3>
+    <form action='/applications/delete' method='POST'>
+        <th:block th:each=" applied : ${applicationList}">
+            <label>
+                <input type="checkbox" name="applicationIds" th:value="${applied.id}" />
+                <span th:text="${applied}"></span>
+            </label><br />
+        </th:block>
+        <button type='submit'>Delete</button>
+    </form>
+</main>
+</body>
+</html>

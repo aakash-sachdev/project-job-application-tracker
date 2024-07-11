@@ -6,7 +6,8 @@
 
     <div id="admin-bar">
         <div class="nav">
-            <a class="navlink" href="/applications/add">Add Artwork</a>
+            <a class="navlink" href="/applications/add">Add Application</a>
+            <a class="navlink" href="/applications/delete">Delete Application</a>
         </div>
     </div>
 
@@ -21,11 +22,15 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Title</th>
+                    <th>ID</th>
+                    <th>Job Title</th>
+                    <th>Company</th>
                 </tr>
                 </thead>
                 <tr th:each="applications : ${applicationList}">
-                    <td th:text="${applications}"></td>
+                    <td th:text="${applications.id}"></td>
+                    <td th:text="${applications.jobTitle}"></td>
+                    <td th:text="${applications.company}"></td>
                 </tr>
             </table>
         </th:block>
