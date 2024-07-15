@@ -15,19 +15,45 @@
     <form action='/applications/add' method='POST'>
 
         <div class="form-item">
-            <label th:for="jobTitle"> Job Title</label>
-            <input th:field="${jobApplication.jobTitle}" />
-            <p class="error" th:errors="${jobApplication.jobTitle}"></p>
+            <label th:for="positions"> Position</label>
+            <select th:field="${jobApplication.position}">
+                <option th:each="position : ${positions}"
+                        th:value="${position.id}"
+                        th:text="${position}"
+                ></option>
+            </select>
         </div>
+
+
         <div class="form-item">
             <label th:for="company">Company</label>
             <input th:field="${jobApplication.company}" />
             <p class="error" th:errors="${jobApplication.company}"></p>
         </div>
 
+        <div class="form-item">
+            <label th:for="applicationDate">Application Date</label>
+            <input type="date" th:field="${jobApplication.applicationDate}" placeholder="yyyy-MM-dd" />
+            <p class="error" th:errors="${jobApplication.applicationDate}"></p>
+        </div>
 
-<!--        <label>Job Tile <input type='text' name='jobTitle' /></label>-->
-<!--        <label>Company <input type='text' name='company' /></label>-->
+        <div class="form-item">
+            <label th:for="compensation">Compensation</label>
+            <input th:field="${jobApplication.compensation}"/>
+            <p class="error" th:errors="${jobApplication.compensation}"></p>
+        </div>
+
+        <div class="form-item">
+            <label th:for="applicationStatus">Application Status</label>
+            <select th:field="${jobApplication.applicationStatus}">
+                <option th:each="status : ${applicationStatus}"
+                        th:value="${status}"
+                        th:text="${status.displayName}"
+                ></option>
+            </select>
+            <p class="error" th:errors="${jobApplication.applicationStatus}"></p>
+        </div>
+
         <button type='submit'>Add to Applications</button>
     </form>
 </main>

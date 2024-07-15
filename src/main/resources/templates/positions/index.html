@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="/positions/add">Add Position</a>
+        <a class="navlink" href="/positions/delete">Delete Position</a>
+    </div>
+</div>
+<main>
+    <h2>Positions</h2>
+    <p th:unless="${appliedPositionList} and ${appliedPositionList.size()}">
+        <em>No contents to display.</em>
+    </p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Applied Positions</th>
+            <th>Company</th>
+            <th>Notes</th>
+            <th>Location</th>
+        </tr>
+        </thead>
+        <tr th:each="positions : ${appliedPositionList}">
+            <td th:text="${positions.id}"></td>
+            <td th:text="${positions.appliedPosition}"></td>
+            <td th:text="${positions.company}"></td>
+            <td th:text="${positions.notes}"></td>
+            <td th:text="${positions.location}"></td></tr>
+    </table>
+</main>
+</body>
+</html>

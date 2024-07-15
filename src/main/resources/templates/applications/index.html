@@ -18,22 +18,29 @@
             <em>No job applications is available to display.</em>
         </p>
 
-        <th:block th:if="${applicationList} and ${applicationList.size()}">
+        <th:block th:if="${jobApplications} and ${jobApplications.size()}">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Job Title</th>
+                    <th>Position</th>
                     <th>Company</th>
+                    <th>Application Date</th>
+                    <th>Compensation</th>
+                    <th>Application Status</th>
                 </tr>
                 </thead>
-                <tr th:each="applications : ${applicationList}">
+                <tr th:each="applications : ${jobApplications}">
                     <td th:text="${applications.id}"></td>
-                    <td th:text="${applications.jobTitle}"></td>
+                    <td th:text="${applications.position}"></td>
                     <td th:text="${applications.company}"></td>
+                    <td th:text="${applications.applicationDate}"></td>
+                    <td th:text="${applications.compensation}"></td>
+                    <td th:text="${applications.applicationStatus.displayName}"></td>
                 </tr>
             </table>
         </th:block>
     </main>
 </body>
 </html>
+

@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
 body {
     color: #1E323C;
-    font-family: 'Assistant', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #F4F9FD;
 }
 
 header {
@@ -11,10 +14,11 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    background-color: #1E323C;
+    background-color: #1E5A8E;
     color: white;
     height: 60px;
     padding: 10px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #admin-bar {
@@ -22,7 +26,7 @@ header {
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-end;
-    background-color: #DA8034;
+    background-color: #3C8DBC;
     color: white;
     font-size: 0.9rem;
     height: 30px;
@@ -30,20 +34,20 @@ header {
 }
 
 h1, h2, h3 {
-    font-family: 'Kodchasan', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
 }
 
 h1 {
-    color: #DA8034;
+    color: #2A9DF4;
     font-weight: 700;
 }
 
 h2 {
     color: white;
-    background-color: #1E323C;
+    background-color: #1E5A8E;
     font-size: 20px;
-    font-weight: 200;
+    font-weight: 400;
     letter-spacing: 6px;
     width: auto;
     border-radius: 2px;
@@ -54,7 +58,7 @@ h2 {
 h3 {
     color: #1E323C;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 h5 {
@@ -62,7 +66,7 @@ h5 {
 }
 
 #ljat {
-    font-family: 'Kodchasan', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     font-weight: 400;
     text-transform: uppercase;
@@ -88,13 +92,13 @@ main {
 }
 
 a {
-    color: #DA8034;
+    color: #2A9DF4;
     font-weight: bold;
     text-decoration: none;
 }
 
 a:hover, a:active {
-    color: #B95A0A;
+    color: #1E5A8E;
 }
 
 a.navlink:link, a.navlink:visited {
@@ -118,12 +122,13 @@ a.navlink:hover, a.navlink:active {
 
 button {
     color: white;
-    background-color: #DA8034;
+    background-color: #2A9DF4;
     margin-top: 20px;
     padding: 5px;
     outline: none;
     border: none;
     border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button.delete {
@@ -147,4 +152,9 @@ button.delete {
 
 textarea {
     min-height: 200px;
+    border: 1px solid #1E5A8E;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #F4F9FD;
+    color: #1E323C;
 }

@@ -9,8 +9,7 @@ public class JobApplicationHomeController {
 
 
     @GetMapping("/")
-    public String renderHomePage(Model model){
-        model.addAttribute("headingText", "welcome");
+    public String displayHomePage(Model model){
         return  "index";
     }
 

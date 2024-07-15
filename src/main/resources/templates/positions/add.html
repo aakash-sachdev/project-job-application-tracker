@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<div id="admin-bar">
+    <div class="nav">
+        <a class="navlink" href="/positions">View List of Applied Position</a>
+        <a class="navlink" href="/positions/delete">Delete Applied Position</a>
+    </div>
+</div>
+<main>
+    <form action='/positions/add' method='POST'>
+        <h3>Add Position</h3>
+
+        <div class="form-item">
+            <label th:for="appliedPosition">Applied Position</label>
+            <input th:field="${position.appliedPosition}" />
+        </div>
+
+        <div class="form-item">
+            <label th:for="company">Company</label>
+            <input th:field="${position.company}" />
+<!--            <p class="error" th:errors="${appliedPosition.lastName}"></p>-->
+        </div>
+        <div class="form-item">
+            <label th:for="location">Location</label>
+            <input th:field="${position.location}" />
+        </div>
+
+        <div class="form-item">
+            <label th:for="notes">Notes</label>
+            <input th:field="${position.notes}" />
+        </div>
+        <button type='submit'>Add</button>
+    </form>
+</main>
+</body>
+</html>

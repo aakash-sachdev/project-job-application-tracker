@@ -1,51 +1,42 @@
 package com.launchcode.job_application_tracker.models;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
-import java.util.Objects;
 
-public class JobApplications {
+@Entity
+public class JobApplications extends AbstractEntity {
 
-    public static int nextId = 1;
+    @ManyToOne
+    @NotNull(message = "Position is required.")
+    private Position position;
 
-    private final int id;
-
-    @NotBlank(message = "Job title is required")
-    private String jobTitle;
-
-    @Size(min = 2, max =30, message = "Company's name must be 2-30 characters long.")
     private String company;
 
-    public JobApplications() {
-        this.id=nextId;
-        nextId++;
-    }
+    private String applicationDate;
 
-    public JobApplications(String jobTitle, String company) {
-        this();
-        this.jobTitle = jobTitle;
+    private ApplicationStatus applicationStatus;
+
+    private String compensation;
+
+    public JobApplications() {}
+
+    public JobApplications(Position position, String company, ApplicationStatus applicationStatus, String applicationDate, String compensation) {
+        this.position = position;
         this.company = company;
+        this.applicationStatus = applicationStatus;
+        this.applicationDate = applicationDate;
+        this.compensation = compensation;
     }
 
-    public int getId() {
-        return id;
+    public Position getPosition() {
+        return position;
     }
 
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        JobApplications.nextId = nextId;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public String getCompany() {
@@ -56,21 +47,33 @@ public class JobApplications {
         this.company = company;
     }
 
+    public ApplicationStatus getApplicationStatus() {
+        return applicationStatus;
+    }
+
+    public void setApplicationStatus(ApplicationStatus applicationStatus) {
+        this.applicationStatus = applicationStatus;
+    }
+
+    public String getApplicationDate() {
+        return applicationDate;
+    }
+
+    public void setApplicationDate(String applicationDate) {
+        this.applicationDate = applicationDate;
+    }
+
+    public String getCompensation() {
+        return compensation;
+    }
+
+    public void setCompensation(String compensation) {
+        this.compensation = compensation;
+    }
+
     @Override
     public String toString() {
-        return jobTitle + "(" + company + ")";
+        return position + " (" + company + ", applied on " + applicationDate + ")";
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        JobApplications that = (JobApplications) o;
-        return id == that.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }
