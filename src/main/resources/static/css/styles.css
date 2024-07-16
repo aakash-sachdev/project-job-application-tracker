@@ -33,7 +33,7 @@ header {
     padding: 6px 30px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, p {
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
 }
@@ -41,6 +41,14 @@ h1, h2, h3 {
 h1 {
     color: #2A9DF4;
     font-weight: 700;
+}
+
+p {
+    color: #2A9DF4;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 300;
+
 }
 
 h2 {
