@@ -1,5 +1,6 @@
 package com.launchcode.job_application_tracker.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
@@ -11,6 +12,7 @@ public class JobApplications extends AbstractEntity {
 
     @ManyToOne
     @NotNull(message = "Position is required.")
+    @JsonManagedReference
     private Position position;
 
     private String company;

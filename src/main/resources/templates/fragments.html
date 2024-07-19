@@ -14,9 +14,16 @@
     <header th:fragment="header">
         <div id="ljat"><b>Launchcode</b> Job Application Tracker</div>
         <div class="nav">
-            <span id="admin-portal" class="bold"><a href="/">HOME</a></span> | &nbsp;&nbsp;
-            <a class="navlink" href="/positions">Applied Positions</a>
+            <span id="admin-portal" class="bold"><a href="/">HOME</a></span> | &nbsp;
+            <th:block th:unless="${loggedIn}">
+                <a class="navlink" href="/login">Log In</a>
+                <a class="navlink" href="/register">Register</a>
+            </th:block>
+            <th:block th:if="${loggedIn}">
+            <a class="navlink" href="/positions">Positions</a>
             <a class="navlink" href="/applications">Job Applications</a>
+                <a class="navlink" href="/logout">Log Out</a>
+            </th:block>
         </div>
     </header>
 

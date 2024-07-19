@@ -1,5 +1,6 @@
 package com.launchcode.job_application_tracker.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
@@ -17,6 +18,7 @@ public class Position extends AbstractEntity{
     private String notes;
 
     @OneToMany(mappedBy="position")
+    @JsonBackReference
     private final List<JobApplications> jobApplications  = new ArrayList<>();
 
     public Position() {}

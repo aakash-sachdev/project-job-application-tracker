@@ -6,6 +6,7 @@ import com.launchcode.job_application_tracker.models.ApplicationStatus;
 import com.launchcode.job_application_tracker.models.JobApplications;
 import com.launchcode.job_application_tracker.models.Position;
 import jakarta.validation.Valid;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +26,7 @@ public class ApplicationController {
     private PositionRepository positionRepository;
 
     @GetMapping("")
-    public String displayApplicationsPage( @RequestParam(required = false) Integer applicationId, Model model) {
+    public String displayApplicationsPage( @RequestParam(required = false) Integer applicationId, Model model,HttpSession session) {
         if (applicationId != null) {
             Optional<Position> result = positionRepository.findById(applicationId);
             if (result.isPresent()) {
@@ -36,14 +37,16 @@ public class ApplicationController {
         } else {
             model.addAttribute("jobApplications", jobApplicationsRepository.findAll());
         }
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "applications/index";
     }
 
     @GetMapping("/add")
-    public String renderAddApplicationForm(Model model) {
+    public String renderAddApplicationForm(Model model, HttpSession session) {
         model.addAttribute("jobApplication", new JobApplications());
         model.addAttribute("positions", positionRepository.findAll());
         model.addAttribute("applicationStatus", ApplicationStatus.values());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "applications/add";
     }
 
@@ -59,7 +62,8 @@ public class ApplicationController {
     }
 
     @GetMapping("/delete")
-    public String renderDeleteApplicationForm(Model model) {
+    public String renderDeleteApplicationForm(Model model, HttpSession session) {
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         model.addAttribute("applicationList", jobApplicationsRepository.findAll());
         return "applications/delete";
     }

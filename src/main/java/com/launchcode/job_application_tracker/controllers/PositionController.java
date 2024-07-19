@@ -2,6 +2,7 @@ package com.launchcode.job_application_tracker.controllers;
 
 import com.launchcode.job_application_tracker.data.PositionRepository;
 import com.launchcode.job_application_tracker.models.Position;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +18,15 @@ public class PositionController {
     private PositionRepository positionRepository;
 
     @GetMapping
-    public String displayPositionsPage(Model model) {
+    public String displayPositionsPage(Model model, HttpSession session) {
         model.addAttribute("appliedPositionList", positionRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "/positions/index";
     }
 
     @GetMapping("/add")
-    public String displayAddPositiontForm(Model model) {
+    public String displayAddPositiontForm(Model model, HttpSession session) {
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         model.addAttribute("position", new Position());
         return "positions/add";
     }
@@ -40,8 +43,10 @@ public class PositionController {
     }
 
     @GetMapping("/delete")
-    public String displayDeleteArtistForm(Model model) {
+    public String displayDeleteArtistForm(Model model, HttpSession session) {
         model.addAttribute("appliedPositionList", positionRepository.findAll());
+        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+
         return "positions/delete";
     }
 
